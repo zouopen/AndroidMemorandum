@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+            <item
+                android:id="@+id/nav_beiwang"
+                android:icon="@drawable/texticon"
+                android:title="@string/beiwanglu"
+                />
+            <item
+                android:id="@+id/nav_daiban"
+                android:icon="@drawable/queding"
+                android:title="待办"/>
+            <item
+                android:id="@+id/nav_tixing"
+                android:icon="@drawable/lingdang"
+                android:title="提醒"/>
+            <item
+                android:id="@+id/nav_shoucang"
+                android:icon="@drawable/xingxing"
+                android:title="我的收藏"/>
+</menu>
