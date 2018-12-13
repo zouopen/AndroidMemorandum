@@ -11,16 +11,25 @@
         android:layout_below="@id/toolbar1"
         android:paddingRight="25dp"
         android:paddingLeft="25dp">
-        <EditText
-            android:id="@+id/et_search"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:background="@drawable/etshape"
-            android:hint="搜索笔记"
-            android:textColorHint="#818181"
-            android:paddingLeft="10dp"
-            android:textSize="10sp"
-            />
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="275dp"
+                android:layout_height="25dp"
+                android:background="@drawable/etshape"
+                android:hint="搜索笔记"
+
+                android:textColorHint="#818181"
+                android:paddingLeft="10dp"
+                android:textSize="10sp"
+                />
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:background="#acabab"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/et_search" />
+
         <ListView
             android:id="@+id/list"
             android:layout_marginTop="12dp"

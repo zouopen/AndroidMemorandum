@@ -1,4 +1,4 @@
-﻿package com.example.sidebar;
+package com.example.sidebar;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerLayout.addDrawerListener(toggle);
         add.setOnClickListener(this);
     }
-    //设置menu类目颜色 我草死你个大嘴
+    //设置menu类目颜色
     private void settingColor(){
         navigationView = findViewById(R.id.nav_view);
         for (int i = 0; i <= 3 ; i++) {
