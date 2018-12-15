@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.sidebar.Adapter.MyAdapter;
 import com.example.sidebar.DBHelper.DataWay;
 import com.example.sidebar.Dao.DataDao;
 import com.example.sidebar.InputBoxActivity;
+import com.example.sidebar.MainActivity;
 import com.example.sidebar.R;
 import com.example.sidebar.updateMainActivity;
 
@@ -33,6 +35,7 @@ public class FragmentMain extends Fragment {
     protected ListView listView;
     protected EditText et_search;
     protected MyAdapter myAdapter;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.framgnet_main,container,false);

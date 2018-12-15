@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidMemorandum.iml" filepath="$PROJECT_DIR$/AndroidMemorandum.iml" />
+      <module fileurl="file://D:\AndroidCode\AndroidMemorandum\AndroidMemorandum.iml" filepath="D:\AndroidCode\AndroidMemorandum\AndroidMemorandum.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\AndroidCode\AndroidMemorandum\app\app.iml" filepath="D:\AndroidCode\AndroidMemorandum\app\app.iml" />
     </modules>
   </component>
 </project>

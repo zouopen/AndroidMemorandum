@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="#f5f5f5">
     <RelativeLayout
+        android:id="@+id/relat1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="5dp"
@@ -40,4 +41,5 @@
             >
         </ListView>
     </RelativeLayout>
+
 </RelativeLayout>

@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sidebar.Framgnet.FragmentAddBtn;
 import com.example.sidebar.Framgnet.FragmentMain;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected DrawerLayout  mDrawerLayout;
     protected NavigationView navigationView;
     private   FragmentMain fragmentMain = new FragmentMain();
+    private FragmentAddBtn fragmentAddBtn=new FragmentAddBtn();
     protected ImageButton add;
     protected TextView textView;
     @Override
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentMain,fragmentMain)
                 .commit();
+        this.getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragmentBtn,fragmentAddBtn).commit();
     }
     
     private void init() {
