@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentMain,fragmentMain)
                 .commit();
+        //新建按钮Fragment
         this.getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentBtn,fragmentAddBtn).commit();
     }
