@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.sidebar.DBHelper.DataWay;
 import com.example.sidebar.Framgnet.FragmentInputBox;
 import com.example.sidebar.Framgnet.FragmentTabBar;
+import com.example.sidebar.Framgnet.FragmentTest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,12 +25,13 @@ import java.util.Date;
 
 public class InputBoxActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ImageButton comeback,clean;
+    protected ImageButton comeback,clean;
     private DataWay dataWay =new DataWay();
-    private FragmentTabBar fragmentTabBar=new FragmentTabBar();
-    private FragmentInputBox fragmentInputBox = new FragmentInputBox();
+    protected FragmentTabBar fragmentTabBar=new FragmentTabBar();
+    protected FragmentInputBox fragmentInputBox = new FragmentInputBox();
+    protected FragmentTest     fragmentTest     = new FragmentTest();
+    protected LinearLayout need_to_be_dealt_with;
 
-    private LinearLayout linearLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +42,17 @@ public class InputBoxActivity extends AppCompatActivity implements View.OnClickL
     }
     private void FragmentView(){
         this.getSupportFragmentManager().beginTransaction()
-                .add(R.id.tab_bar,fragmentTabBar)
-                .add(R.id.input_box,fragmentInputBox)
+                .add(R.id.input_box,fragmentInputBox)   //普通编辑页
+                .add(R.id.input_box,fragmentTest)       //待办页
                 .commit();
     }
     private  void init(){
+        need_to_be_dealt_with = findViewById(R.id.need_to_be_dealt_with);
         comeback= findViewById(R.id.fanhui);
         clean   = findViewById(R.id.queren);
-        linearLayout=findViewById(R.id.need_to_be_dealt_with);
-
         comeback.setOnClickListener(this);
         clean.setOnClickListener(this);
+        need_to_be_dealt_with.setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +73,14 @@ public class InputBoxActivity extends AppCompatActivity implements View.OnClickL
             case R.id.queren:
                 Toast.makeText(this,"清空！",Toast.LENGTH_SHORT).show();
                 fragmentInputBox.et_text.setText("");
+                break;
+            case R.id.need_to_be_dealt_with:    //跳转待办页
+                this.getSupportFragmentManager()
+                        .beginTransaction()
+                        .show(fragmentTest)
+                        .hide(fragmentInputBox)
+                        .commit();
+                Toast.makeText(this,"点击成功",Toast.LENGTH_SHORT).show();
                 break;
 
         }

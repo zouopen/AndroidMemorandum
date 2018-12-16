@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_below="@id/relat1"
     android:gravity="center_horizontal|bottom"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="5dp"
@@ -16,14 +15,12 @@
         android:gravity="bottom"
         android:background="@drawable/buttonshape"
         android:layout_marginBottom="8dp"
-
         >
         <!--待办-->
         <LinearLayout
             android:id="@+id/need_to_be_dealt_with"
             android:layout_width="80dp"
             android:layout_height="40dp"
-
             android:orientation="vertical"
             android:gravity="center_horizontal">
             <!--待办图片-->

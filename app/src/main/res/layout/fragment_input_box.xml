@@ -20,6 +20,7 @@
             tools:text="aaa"
             android:textColor="#7c7a7a"
             />
+
         <EditText
             android:id="@+id/et_text"
             android:layout_marginTop="15dp"
@@ -29,5 +30,11 @@
             android:layout_below="@id/tv_time"
             android:textColor="#000000"
             />
+        <TextView
+            android:layout_below="@id/tv_time"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通编辑页"/>
     </RelativeLayout>
 </RelativeLayout>

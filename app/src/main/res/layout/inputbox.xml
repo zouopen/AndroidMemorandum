@@ -33,18 +33,19 @@
             android:background="@drawable/shanchu"
             />
     </android.support.v7.widget.Toolbar>
-
+    <!--编辑容器-->
    <RelativeLayout
        android:id="@+id/input_box"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content">
-
    </RelativeLayout>
+    <!--标签栏导入本地layout视图-->
     <RelativeLayout
-        android:id="@+id/tab_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
-        >
+        android:gravity="bottom">
+        <include
+            layout="@layout/fragment_tab"
+            />
     </RelativeLayout>
 </LinearLayout>
