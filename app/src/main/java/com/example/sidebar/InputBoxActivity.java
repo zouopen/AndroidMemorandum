@@ -61,7 +61,7 @@ public class InputBoxActivity extends AppCompatActivity implements View.OnClickL
                     fragmentInputBox.Time();
                     dataWay.addData(this,text,fragmentInputBox.getStr_time());
                     Toast.makeText(this,"添加成功",Toast.LENGTH_SHORT).show();
-
+                    startActivity(new Intent(InputBoxActivity.this,MainActivity.class));
                 }
                 break;
             case R.id.queren:

@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class updateMainActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText et_text;
+    protected EditText et_text;
     private ImageButton comeback,clean;
     private String id;
     private DataWay dataWay =new DataWay();
@@ -31,14 +31,10 @@ public class updateMainActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.inputbox);
         init();
         FragmentView();
-//        queryById_AND_update();
+        queryById_AND_update();
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        et_text =findViewById(R.id.et_text);
 
-    }
+
     private void FragmentView(){
         this.getSupportFragmentManager().beginTransaction()
                 .add(R.id.input_box,fragmentWith)       //待办页
@@ -46,7 +42,7 @@ public class updateMainActivity extends AppCompatActivity implements View.OnClic
                 .commit();
     }
     private  void init(){
-
+        et_text = findViewById(R.id.et_text);
         comeback= findViewById(R.id.fanhui);
         clean   = findViewById(R.id.queren);
         Intent intent=getIntent();

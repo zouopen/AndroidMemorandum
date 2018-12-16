@@ -38,6 +38,8 @@
        android:id="@+id/input_box"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content">
+       <include
+           layout="@layout/fragment_input_box"/>
    </RelativeLayout>
     <!--标签栏导入本地layout视图-->
     <RelativeLayout

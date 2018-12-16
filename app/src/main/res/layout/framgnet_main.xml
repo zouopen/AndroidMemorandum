@@ -27,7 +27,9 @@
                 android:id="@+id/btn_search"
                 android:layout_width="80dp"
                 android:layout_height="25dp"
-                android:background="#acabab"
+                android:text="搜索"
+                android:textColor="#000"
+                android:background="@null"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/et_search" />
 
