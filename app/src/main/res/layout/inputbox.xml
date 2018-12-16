@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#f5f5f5">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -33,28 +33,18 @@
             android:background="@drawable/shanchu"
             />
     </android.support.v7.widget.Toolbar>
+
+   <RelativeLayout
+       android:id="@+id/input_box"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+
+   </RelativeLayout>
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="15dp"
-        android:layout_below="@id/toolbar2">
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="aaa"
-            android:textColor="#7c7a7a"
-            />
-        <EditText
-            android:id="@+id/et_text"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_below="@id/tv_time"
-            android:textColor="#000000"
-            />
+        android:id="@+id/tab_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        >
     </RelativeLayout>
 </LinearLayout>

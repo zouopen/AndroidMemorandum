@@ -36,15 +36,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
         settingColor();
         initListener();
+
     }
 //    加载fragment布局
     private void FragmentView(){
         this.getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentMain,fragmentMain)
+                .add(R.id.fragmentBtn,fragmentAddBtn)
                 .commit();
-        //新建按钮Fragment
-        this.getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentBtn,fragmentAddBtn).commit();
+
+
     }
     
     private void init() {

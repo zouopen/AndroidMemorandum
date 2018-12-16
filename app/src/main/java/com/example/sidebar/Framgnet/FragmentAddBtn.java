@@ -16,7 +16,7 @@ import com.example.sidebar.R;
 /**
  * Created by 黄铿 on 2018/12/15.
  */
-
+//新建按钮Fragment
 public class FragmentAddBtn extends Fragment{
     protected LinearLayout add_btn;
 

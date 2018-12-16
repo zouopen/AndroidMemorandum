@@ -34,8 +34,8 @@ public class updateMainActivity extends AppCompatActivity implements View.OnClic
         Time();
     }
     private  void init(){
-        tv_time = findViewById(R.id.tv_time);
-        et_text = findViewById(R.id.et_text);
+//        tv_time = findViewById(R.id.tv_time);
+//        et_text = findViewById(R.id.et_text);
         comeback= findViewById(R.id.fanhui);
         clean   = findViewById(R.id.queren);
         Intent intent=getIntent();

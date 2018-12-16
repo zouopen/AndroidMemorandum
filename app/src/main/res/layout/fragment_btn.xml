@@ -8,6 +8,7 @@
     android:layout_marginTop="5dp"
 
     >
+    <!--新建按钮-->
     <LinearLayout
         android:id="@+id/add_btn"
         android:layout_width="105dp"
@@ -16,6 +17,7 @@
         android:orientation="vertical"
 
         android:gravity="center_horizontal">
+        <!--加号图片-->
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"

@@ -27,7 +27,7 @@ import com.example.sidebar.updateMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//搜索框、ListView的Fragment
 public class FragmentMain extends Fragment {
     private    DataWay   dataWay  = new DataWay();
     private List<DataDao> daoList = new ArrayList<>();
