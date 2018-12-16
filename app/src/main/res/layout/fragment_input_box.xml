@@ -2,6 +2,7 @@
     <!--时间TextView、输入框的Fragment布局-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/far"
     android:layout_width="match_parent"
     android:layout_height="450dp"
     android:background="#f5f5f5"
@@ -30,11 +31,6 @@
             android:layout_below="@id/tv_time"
             android:textColor="#000000"
             />
-        <TextView
-            android:layout_below="@id/tv_time"
-            android:textColor="#000000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="普通编辑页"/>
+
     </RelativeLayout>
 </RelativeLayout>

@@ -8,11 +8,20 @@ public class DataDao {
     private String Text;
     private String Time;
     private Integer id;
-
-    public static final String tbName ="memorandumtb";
-    public static final String ID="id";
-    public static final String TEXT="Text";
+    private Integer With;
+    public static final String tbName = "memorandumtb";
+    public static final String ID = "id";
+    public static final String TEXT = "Text";
     public static final String TIME = "Time";
+    public static final String WITH = "With";
+    public Integer getWith() {
+        return With;
+    }
+
+    public void setWith(Integer with) {
+        With = with;
+    }
+
     public void setTime(String time) {
         Time = time;
     }
