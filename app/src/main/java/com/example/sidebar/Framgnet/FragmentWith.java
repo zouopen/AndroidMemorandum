@@ -16,16 +16,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class FragmentWith extends Fragment {
     @Bind(R.id.tv_time1) TextView tv_time;
-    @Bind(R.id.et_text) EditText et_text;
+    @Bind(R.id.et_text1) EditText et_text;
     private String str_time;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_with,container,false);
+        ButterKnife.bind(this,view);
         Time();
-        tv_time.setText(str_time);
         return view;
     }
     //    获取时间并设置到TextView
@@ -33,5 +34,6 @@ public class FragmentWith extends Fragment {
         Date dt = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd HH:mm");
         str_time = sdf.format(dt);
+        tv_time.setText(str_time);
     }
 }

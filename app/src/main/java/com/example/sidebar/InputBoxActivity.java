@@ -17,25 +17,26 @@ import com.example.sidebar.Framgnet.FragmentWith;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by 黄铿 on 2018/12/4.
  */
 
-public class InputBoxActivity extends AppCompatActivity implements View.OnClickListener{
+public class InputBoxActivity extends AppCompatActivity{
     @Bind(R.id.et_text) EditText et_text;
     @Bind(R.id.fanhui)  ImageButton comeback;
     @Bind(R.id.queren)  ImageButton clean;
     @Bind(R.id.need_to_be_dealt_with) LinearLayout need_to_be_dealt_with;
     protected FragmentAdd  fragmentAdd  = new FragmentAdd();
     protected FragmentWith fragmentWith = new FragmentWith();
+    private   int flag=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inputbox);
         ButterKnife.bind(this);
-        init();
         FragmentView();
 
     }
@@ -45,41 +46,28 @@ public class InputBoxActivity extends AppCompatActivity implements View.OnClickL
                 .add(R.id.input_box,fragmentAdd)       //普通编辑页
                 .commit();
     }
-    private  void init(){
-        comeback.setOnClickListener(this);
-        clean.setOnClickListener(this);
-        need_to_be_dealt_with.setOnClickListener(this);
+    @OnClick(R.id.fanhui) void ComeBackListner(){
+        startActivity(new Intent(InputBoxActivity.this,MainActivity.class));
     }
-    int flag=0;
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.fanhui:
-                startActivity(new Intent(InputBoxActivity.this,MainActivity.class));
-                break;
-            case R.id.queren:
-                Toast.makeText(this,"清空！",Toast.LENGTH_SHORT).show();
-                fragmentAdd.et_text.setText("");
-                break;
-            case R.id.need_to_be_dealt_with:    //跳转待办页
-                if(flag==0){
-                    this.getSupportFragmentManager()
-                            .beginTransaction()
-                            .show(fragmentWith)
-                            .hide(fragmentAdd)
-                            .commit();
+    @OnClick(R.id.queren) void ClearAll(){
+        Toast.makeText(this,"清空！",Toast.LENGTH_SHORT).show();
+        fragmentAdd.et_text.setText("");
+    }
+    @OnClick(R.id.need_to_be_dealt_with) void HideShowFragment(){
+        if(flag==0){
+            this.getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(fragmentWith)
+                    .hide(fragmentAdd)
+                    .commit();
 
-                }else if(flag==1){
-                    this.getSupportFragmentManager()
-                            .beginTransaction()
-                            .show(fragmentAdd)
-                            .hide(fragmentWith)
-                            .commit();
-                }
-                flag=(flag+1)%2;
-                break;
-
+        }else if(flag==1){
+            this.getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(fragmentAdd)
+                    .hide(fragmentWith)
+                    .commit();
         }
-
+        flag=(flag+1)%2;
     }
 }
