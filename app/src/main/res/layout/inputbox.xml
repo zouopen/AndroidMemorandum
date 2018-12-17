@@ -36,7 +36,7 @@
     <!--编辑容器-->
    <RelativeLayout
        android:id="@+id/input_box"
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <include
            layout="@layout/fragment_input_box"/>

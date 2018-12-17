@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     @OnItemClick(R.id.list) void onViewClicked(int position){
-//        Log.e("test", "onItemClick: "+ position);
         DataDao dataDao = daoList.get(position);
         Intent intent=new Intent(getApplicationContext(),updateMainActivity.class);
         intent.putExtra("id",dataDao.getId());
@@ -121,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.notifyDataSetChanged();
         listView.setAdapter(myAdapter);
     }
+
 }
 
 
