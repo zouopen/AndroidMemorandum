@@ -46,13 +46,13 @@ public class InputBoxActivity extends AppCompatActivity{
                 .add(R.id.input_box,fragmentAdd)       //普通编辑页
                 .commit();
     }
-    @OnClick(R.id.fanhui) void ComeBackListner(){
-        startActivity(new Intent(InputBoxActivity.this,MainActivity.class));
-    }
-    @OnClick(R.id.queren) void ClearAll(){
-        Toast.makeText(this,"清空！",Toast.LENGTH_SHORT).show();
-        fragmentAdd.et_text.setText("");
-    }
+//    @OnClick(R.id.fanhui) void ComeBackListner(){
+//        startActivity(new Intent(InputBoxActivity.this,MainActivity.class));
+//    }
+//    @OnClick(R.id.queren) void ClearAll(){
+//        Toast.makeText(this,"清空！",Toast.LENGTH_SHORT).show();
+//        fragmentAdd.et_text.setText("");
+//    }
     @OnClick(R.id.need_to_be_dealt_with) void HideShowFragment(){
         if(flag==0){
             this.getSupportFragmentManager()
