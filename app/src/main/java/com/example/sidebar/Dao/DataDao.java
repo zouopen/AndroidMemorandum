@@ -1,13 +1,20 @@
 package com.example.sidebar.Dao;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 /**
  * Created by 黄铿 on 2018/12/5.
  */
-
+@DatabaseTable(tableName = "note_tb")
 public class DataDao {
+    @DatabaseField
     private String Text;
+    @DatabaseField
     private String Time;
+    @DatabaseField(generatedId = true)
     private Integer id;
+    @DatabaseField
     private Integer With;
     public static final String tbName = "memorandumtb";
     public static final String ID = "id";

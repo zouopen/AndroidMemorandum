@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 public class DataWay {
-    private  final String wenhao="=?";
     public List<DataDao> allQuery(Context context){
         List<DataDao> dataWayList=new ArrayList<DataDao>();
 
@@ -36,7 +35,7 @@ public class DataWay {
     public DataDao idQuery(Context context,String id){
         DateHelper dateHelper=DateHelper.getDatabase(context);
         SQLiteDatabase sqLiteDatabase= dateHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + DataDao.tbName +" where "+ DataDao.ID +wenhao,
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + DataDao.tbName +" where "+ DataDao.ID +" =? ",
                 new String [] {id});                                                                            //=?
         DataDao dataDao = null;
         while (cursor.moveToNext()){

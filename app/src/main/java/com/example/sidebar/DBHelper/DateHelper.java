@@ -5,13 +5,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.sidebar.Dao.DataDao;
+import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
 
 
 /**
  * Created by 黄铿 on 2018/12/5.
  */
 
-public class DateHelper extends SQLiteOpenHelper{
+public class DateHelper extends OrmLiteSqliteOpenHelper{
     private static final String dbName="memorandum.db";
     private static final  int version=1;
     private static DateHelper getDatabase;
@@ -21,22 +26,27 @@ public class DateHelper extends SQLiteOpenHelper{
         }
         return getDatabase;
     }
-    public DateHelper(Context context) {
+    private DateHelper(Context context) {
         super(context, dbName, null,version);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS "+ DataDao.tbName +"("
-                    + DataDao.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + DataDao.TEXT + " VARCHAR(20),"
-                    + DataDao.TIME + " VARCHAR(20)"
-                    +")" );
-
+    public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
+        try {
+            TableUtils.createTable(connectionSource,DataDao.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+    public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
+        try {
+            TableUtils.dropTable(connectionSource,DataDao.class,true);
+            onCreate(database);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }
