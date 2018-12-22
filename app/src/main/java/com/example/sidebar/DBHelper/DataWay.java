@@ -124,7 +124,6 @@ public class DataWay {
 
     /**
      * 删除数据
-     * @deprecated 该方法已被重构,不推荐使用
      * @param context
      * @param id
      * @deprecated 该方法已被重构,不推荐使用

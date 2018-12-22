@@ -2,6 +2,7 @@ package com.example.sidebar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -9,8 +10,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,6 +25,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.hubert.guide.NewbieGuide;
+import com.app.hubert.guide.core.Controller;
+import com.app.hubert.guide.listener.OnGuideChangedListener;
+import com.app.hubert.guide.listener.OnLayoutInflatedListener;
+import com.app.hubert.guide.listener.OnPageChangedListener;
+import com.app.hubert.guide.model.GuidePage;
+import com.app.hubert.guide.model.HighLight;
+import com.app.hubert.guide.model.RelativeGuide;
 import com.example.sidebar.Adapter.MyAdapter;
 import com.example.sidebar.DBHelper.DataWay;
 import com.example.sidebar.DBHelper.NoteDAOServiceImpl;
@@ -55,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         ButterKnife.bind(this);
+//        nonstop();
+        moreStop();
         init();
         initListener();
     }
@@ -127,7 +143,35 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.CheckData(daoList);
         listView.setAdapter(myAdapter);
     }
+    public void moreStop(){
+        Animation enterAnimation = new AlphaAnimation(0f, 1f);
+        enterAnimation.setDuration(600);
+        enterAnimation.setFillAfter(true);
 
+        Animation exitAnimation = new AlphaAnimation(1f, 0f);
+        exitAnimation.setDuration(600);
+        exitAnimation.setFillAfter(true);
+
+        //新增多页模式，即一个引导层显示多页引导内容
+        NewbieGuide.with(this)
+                .setLabel("page")//设置引导层标示区分不同引导层，必传！否则报错
+                .alwaysShow(false)//是否每次都显示引导层，默认false，只显示一次
+                .addGuidePage(//添加一页引导页
+                        GuidePage.newInstance()//创建一个实例
+                                .setLayoutRes(R.layout.view_guide_simple)//设置引导页布局
+                                .setEnterAnimation(enterAnimation)//进入动画
+                                .setExitAnimation(exitAnimation)//退出动画
+                )
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(add_btn, HighLight.Shape.RECTANGLE, 20)
+                        .addHighLight(add)
+                        .setLayoutRes(R.layout.view_guide)
+                        .setEverywhereCancelable(true)//是否点击任意地方跳转下一页或者消失引导层，默认true
+                        .setEnterAnimation(enterAnimation)//进入动画
+                        .setExitAnimation(exitAnimation)//退出动画
+                )
+                .show();//显示引导层(至少需要一页引导页才能显示)
+    }
 }
 
 
