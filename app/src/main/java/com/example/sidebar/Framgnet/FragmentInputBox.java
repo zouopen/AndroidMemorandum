@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sidebar.DBHelper.DataWay;
+import com.example.sidebar.DBHelper.NoteDAOServiceImpl;
 import com.example.sidebar.Dao.DataDao;
 import com.example.sidebar.InputBoxActivity;
 import com.example.sidebar.R;
 import com.example.sidebar.updateMainActivity;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,24 +34,28 @@ import butterknife.ButterKnife;
 public class FragmentInputBox extends Fragment{
     @Bind(R.id.tv_time) TextView tv_time;
     @Bind(R.id.et_text) public EditText et_text;
-    private DataWay dataWay =new DataWay();
-    private String id;
+    private Integer id;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_input_box,container,false);
         ButterKnife.bind(this,view);
-        InitData();
+        try {
+            InitData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 //  初始化数据源
-    private void InitData(){
+    private void InitData() throws SQLException{
+        NoteDAOServiceImpl<DataDao, Integer, String> noteDAOService = new NoteDAOServiceImpl<>(getContext(), DataDao.class);
         Date dt = new Date();
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd HH:mm");
         String str_time = sdf.format(dt);
         tv_time.setText(str_time);
-        DataDao dataDao = dataWay.idQuery(getContext(),id);
+        DataDao dataDao = noteDAOService.queryById(id);
         et_text.setText(dataDao.getText());
     }
 //    接受从updateMainActivity传来的id

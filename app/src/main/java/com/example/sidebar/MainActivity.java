@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 import com.example.sidebar.Adapter.MyAdapter;
 import com.example.sidebar.DBHelper.DataWay;
+import com.example.sidebar.DBHelper.NoteDAOServiceImpl;
 import com.example.sidebar.Dao.DataDao;
 import com.example.sidebar.Utils.ColorUtils;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.nav_view)      NavigationView navigationView;
     @Bind(R.id.list)          ListView listView;
     protected MyAdapter myAdapter;
-    private DataWay       dataWay     = new DataWay();
     private List<DataDao> daoList     = new ArrayList<>();
+    private NoteDAOServiceImpl<DataDao, Integer, String> noteDAOService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,17 +60,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        //调用数据库实现类
+        noteDAOService = new NoteDAOServiceImpl<>(this, DataDao.class);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
         //清除标题栏默认文字
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        myAdapter = new MyAdapter(this,daoList);
-        daoList  .addAll(dataWay.allQuery(this));
-        listView .setAdapter(myAdapter);
+        myAdapter = new MyAdapter(this, daoList);
+        try { daoList.addAll(noteDAOService.queryAll()); } catch (SQLException e) { e.printStackTrace(); }
+        listView.setAdapter(myAdapter);
         //主要通过ActionBarDrawerToggle将toolbar与DrawerListener关联起来
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(toggle);
         //设置menu类目颜色
-        ColorUtils.settingColor(R.color.navigation_menu_item_color,navigationView,this);
+        ColorUtils.settingColor(R.color.navigation_menu_item_color, navigationView, this);
     }
     //设置监听器
     private void initListener(){
@@ -88,12 +93,13 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnItemLongClick(R.id.list) boolean onViewLongClicked(int position){
         DataDao dataDao = daoList.get(position);
-        final String Id= dataDao.getId()+"";
+        noteDAOService = new NoteDAOServiceImpl<>(this,DataDao.class);
+        final Integer Id= dataDao.getId();
         AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this).setTitle("提示")
                 .setMessage("是否删除所选？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dataWay.deleteData(getApplicationContext(),Id);
+                        try { DataDao id = noteDAOService.queryById(Id);noteDAOService.delete(id); } catch (SQLException e) { e.printStackTrace(); }
                         Refresh();
                     }
                 });
@@ -103,20 +109,22 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_search) void Search(){
 //        Toast.makeText(this,"点了一下",Toast.LENGTH_SHORT).show();
         String et_text= et_search.getText().toString();
+        noteDAOService = new NoteDAOServiceImpl<>(this,DataDao.class);
         daoList.clear();
-        daoList.addAll(dataWay.textQuery(getApplicationContext(),et_text));
+        try { daoList.addAll(noteDAOService.Vague(et_text)); } catch (SQLException e) { e.printStackTrace(); }
         myAdapter=new MyAdapter(getApplicationContext(),daoList);
-        myAdapter.notifyDataSetChanged();
+        myAdapter.CheckData(daoList);
         listView.setAdapter(myAdapter);
     }
     @OnClick({R.id.tianjia,R.id.add_btn}) void StartActivity(){
         startActivity(new Intent(MainActivity.this,InputBoxActivity.class));}
     //刷新
     void Refresh(){
+        noteDAOService = new NoteDAOServiceImpl<>(this,DataDao.class);
         daoList.clear();
-        daoList.addAll(dataWay.allQuery(getApplicationContext()));
+        try { daoList.addAll(noteDAOService.queryAll()); } catch (SQLException e) { e.printStackTrace(); }
         myAdapter=new MyAdapter(getApplicationContext(),daoList);
-        myAdapter.notifyDataSetChanged();
+        myAdapter.CheckData(daoList);
         listView.setAdapter(myAdapter);
     }
 

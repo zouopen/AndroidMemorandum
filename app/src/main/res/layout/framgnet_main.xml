@@ -18,8 +18,8 @@
                 android:layout_height="25dp"
                 android:background="@drawable/etshape"
                 android:hint="搜索笔记"
-
-                android:textColorHint="#818181"
+                android:textColorHint="#262626"
+                android:textColor="#262626"
                 android:paddingLeft="10dp"
                 android:textSize="10sp"
                 />

@@ -25,6 +25,10 @@ public class MyAdapter extends BaseAdapter{
         this.datalist=datalist;
         this.inflater=LayoutInflater.from(context.getApplicationContext());
     }
+    public void CheckData(List<DataDao> dataDao){
+        this.datalist = dataDao;
+        notifyDataSetChanged();
+    }
     @Override
     public int getCount() {
         return datalist.size();

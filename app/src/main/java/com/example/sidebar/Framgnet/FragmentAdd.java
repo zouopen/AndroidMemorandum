@@ -14,10 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sidebar.DBHelper.DataWay;
+import com.example.sidebar.DBHelper.NoteDAOService;
+import com.example.sidebar.DBHelper.NoteDAOServiceImpl;
+import com.example.sidebar.Dao.DataDao;
 import com.example.sidebar.InputBoxActivity;
 import com.example.sidebar.MainActivity;
 import com.example.sidebar.R;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,7 +36,7 @@ public class FragmentAdd extends Fragment{
     @Bind(R.id.et_text) public EditText et_text;
     private ImageButton comeback;
     private ImageButton clean;
-    private DataWay dataWay = new DataWay();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_input_box,container,false);
@@ -53,12 +57,15 @@ public class FragmentAdd extends Fragment{
             @Override
             public void onClick(View v) {
                 String text = et_text.getText().toString();
-                String time = tv_time.getText().toString();
                 if(text.equals("")){
                     Toast.makeText(getContext(),"备忘录数据不能为空",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getContext(),MainActivity.class));
                 }else {
-                    dataWay.addData(getContext(),text,time);
+                    NoteDAOService<DataDao,Integer,String> service = new NoteDAOServiceImpl<>(getContext(), DataDao.class);
+                    DataDao dataDao = new DataDao();
+                    dataDao.setText(et_text.getText().toString());
+                    dataDao.setTime(tv_time.getText().toString());
+                    try { service.save(dataDao); } catch (SQLException e) { e.printStackTrace(); }
                     startActivity(new Intent(getContext(),MainActivity.class));
                 }
 
