@@ -46,14 +46,14 @@ public class NoteDAOServiceImplTest {
     public void queryAll() throws SQLException {
         List<DataDao> dataDaoList = dataDaoIntegerNoteDAOService.queryAll();
         for (DataDao dao: dataDaoList) {
-            Log.e("1", "queryAll: "+dao.getText() );
+            Log.e("1", "queryAll: "+dao.getWith() );
         }
     }
     @Test
     public void Vague() throws SQLException{
         List<DataDao> vague = dataDaoIntegerNoteDAOService.Vague("1");
         for (DataDao dataDao : vague){
-            Log.e("test", "Vague: "+ dataDao.getText() );
+            Log.e("test", "Vague: "+ dataDao.getWith() );
         }
     }
 }

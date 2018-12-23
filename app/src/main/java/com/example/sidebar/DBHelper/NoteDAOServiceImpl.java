@@ -43,13 +43,15 @@ public class NoteDAOServiceImpl<T,Z,S> implements NoteDAOService<T,Z,S> {
             connection = dao.startThreadConnection();
             //设置为手动提交
             dao.setAutoCommit(connection,false);
-            //创建表
+            //向表中添加一条数据
             int save = dao.create(t);
             //提交数据
             dao.commit(connection);
+            //关闭提交
+            dao.endThreadConnection(connection);
             return save;
         }catch (SQLException e){
-            //创建错误，回滚数据库
+            //添加错误，回滚数据库
             dao.rollBack(connection);
             e.printStackTrace();
         }finally {
@@ -68,6 +70,7 @@ public class NoteDAOServiceImpl<T,Z,S> implements NoteDAOService<T,Z,S> {
             dao.setAutoCommit(connection,false);
             int save = dao.delete(t);
             dao.commit(connection);
+            dao.endThreadConnection(connection);
             return save;
         }catch (SQLException e){
             dao.rollBack(connection);
@@ -87,6 +90,7 @@ public class NoteDAOServiceImpl<T,Z,S> implements NoteDAOService<T,Z,S> {
             dao.setAutoCommit(connection,false);
             int save = dao.update(t);
             dao.commit(connection);
+            dao.endThreadConnection(connection);
             return save;
         }catch (SQLException e){
             dao.rollBack(connection);
@@ -106,6 +110,7 @@ public class NoteDAOServiceImpl<T,Z,S> implements NoteDAOService<T,Z,S> {
             dao.setAutoCommit(connection,false);
             T t = dao.queryForId(z);
             dao.commit(connection);
+            dao.endThreadConnection(connection);
             return t;
         }catch (SQLException e){
             dao.rollBack(connection);
@@ -124,6 +129,7 @@ public class NoteDAOServiceImpl<T,Z,S> implements NoteDAOService<T,Z,S> {
             connection = dao.startThreadConnection();
             dao.setAutoCommit(connection,false);
             dao.commit(connection);
+            dao.endThreadConnection(connection);
             return dao.queryForAll();
         }catch (SQLException e){
             e.printStackTrace();
@@ -143,6 +149,7 @@ public class NoteDAOServiceImpl<T,Z,S> implements NoteDAOService<T,Z,S> {
             dao.setAutoCommit(connection,false);
             List<T> query = dao.queryBuilder().where().like(DataDao.TEXT,"%" + s + "%").query();
             dao.commit(connection);
+            dao.endThreadConnection(connection);
             return query;
         }catch (SQLException e){
             e.printStackTrace();

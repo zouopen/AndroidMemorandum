@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         myAdapter = new MyAdapter(this, daoList);
-        try { daoList.addAll(noteDAOService.queryAll()); } catch (SQLException e) { e.printStackTrace(); }
+        try {daoList.addAll(noteDAOService.queryAll());} catch (SQLException e) {e.printStackTrace();}
         listView.setAdapter(myAdapter);
         //主要通过ActionBarDrawerToggle将toolbar与DrawerListener关联起来
         mDrawerLayout.addDrawerListener(toggle);
