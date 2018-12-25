@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.sidebar.Dao.DataDao;
 import com.example.sidebar.R;
@@ -49,20 +50,25 @@ public class MyAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if(convertView==null){
-            convertView=inflater.inflate(R.layout.item,parent,false);
-            viewHolder=new ViewHolder();
-            viewHolder.mText=(TextView)convertView.findViewById(R.id.mtext);
-            viewHolder.mTime=(TextView)convertView.findViewById(R.id.mtime);
+            convertView = inflater.inflate(R.layout.item,parent,false);
+            viewHolder  = new ViewHolder();
+            viewHolder.mText = (TextView)convertView.findViewById(R.id.mtext);
+            viewHolder.mTime = (TextView)convertView.findViewById(R.id.mtime);
+            viewHolder.mImg  = (ImageView)convertView.findViewById(R.id.with);
             convertView.setTag(viewHolder);
         }else {
             viewHolder= (ViewHolder) convertView.getTag();
         }
         viewHolder.mText.setText(datalist.get(position).getText());
         viewHolder.mTime.setText(datalist.get(position).getTime());
+        if (datalist.get(position).getWith()==1){
+            viewHolder.mImg.setBackgroundResource(R.drawable.yuanquan);
+        }
         return convertView;
     }
     class ViewHolder{
         TextView mText;
         TextView mTime;
+        ImageView mImg;
     }
 }

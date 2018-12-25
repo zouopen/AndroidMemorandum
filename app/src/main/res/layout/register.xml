@@ -26,24 +26,26 @@
         android:divider="@drawable/dividing_line"
         android:showDividers="middle|end">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="5dp"
             android:paddingBottom="10dp"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="帐号"
-                android:textSize="15dp"
-                android:textColor="#000000"
-                android:layout_marginRight="25dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@null"
-                android:hint="请输入帐号"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="帐号"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:layout_marginRight="25dp"/>
+                <EditText
+					android:id="@+id/edit_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:hint="请输入帐号"
+                    android:maxLength="20"
+                    />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,12 +60,16 @@
                 android:textColor="#000000"
                 android:layout_marginRight="25dp"/>
             <EditText
+				android:id="@+id/edit_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@null"
                 android:hint="请输入密码"
+                android:maxLength="20"
+                android:inputType="textPassword"
                 />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -77,10 +83,13 @@
                 android:textColor="#000000"
                 android:layout_marginRight="25dp"/>
             <EditText
+				android:id="@+id/Cfmpassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@null"
                 android:hint="请重复输入密码"
+                android:maxLength="20"
+                android:inputType="textPassword"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -90,6 +99,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp">
         <TextView
+			android:id="@+id/comeback_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="以有帐号，返回登录"
@@ -101,6 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp">
         <Button
+			android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#f98126"

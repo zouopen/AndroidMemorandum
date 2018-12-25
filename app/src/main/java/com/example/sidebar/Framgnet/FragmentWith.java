@@ -30,8 +30,7 @@ import butterknife.ButterKnife;
 public class FragmentWith extends Fragment {
     @Bind(R.id.tv_time1) TextView tv_time;
     @Bind(R.id.et_text1) public EditText et_text1;
-    private ImageButton comeback;
-    private ImageButton clean;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

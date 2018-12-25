@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/relat1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:paddingTop="5dp"
         android:layout_below="@id/toolbar1"
         android:paddingRight="25dp"
@@ -32,11 +32,15 @@
                 android:background="@null"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/et_search" />
-
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/relat1"
+        android:paddingLeft="15dp">
         <ListView
             android:id="@+id/list"
             android:layout_marginTop="12dp"
-            android:layout_below="@id/et_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#f5f5f5"
