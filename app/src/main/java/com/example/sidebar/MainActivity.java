@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         DataDao dataDao = daoList.get(position);
         Intent intent=new Intent(getApplicationContext(),updateMainActivity.class);
         intent.putExtra("id",dataDao.getId());
+        intent.putExtra("with",dataDao.getWith());
         startActivity(intent);
     }
     @OnItemLongClick(R.id.list) boolean onViewLongClicked(int position){

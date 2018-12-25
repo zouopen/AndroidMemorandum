@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--登录界面-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +26,7 @@
          android:divider="@drawable/dividing_line"
          android:showDividers="middle|end">
          <LinearLayout
-             android:layout_width="wrap_content"
+             android:layout_width="match_parent"
              android:layout_height="50dp"
              android:padding="5dp"
              android:paddingBottom="10dp"
@@ -36,13 +37,21 @@
                  android:text="帐号"
                  android:textSize="15dp"
                  android:textColor="#000000"
+                 android:singleLine="true"
+
                  android:layout_marginRight="25dp"/>
+             <!--android:maxLength="20"   限制输入字数-->
              <EditText
-                 android:layout_width="match_parent"
-                 android:layout_height="40dp"
-                 android:background="@null"
+				android:id="@+id/login_account"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:maxLength="20"
                  />
+
          </LinearLayout>
+
+
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="50dp"
@@ -55,10 +64,15 @@
                  android:textSize="15dp"
                  android:textColor="#000000"
                  android:layout_marginRight="25dp"/>
+
+             <!--android:inputType="textPassword"   隐藏输入内容-->
              <EditText
-                 android:layout_width="match_parent"
-                 android:layout_height="40dp"
-                 android:background="@null"
+				android:id="@+id/login_password"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:maxLength="20"
                  />
          </LinearLayout>
      </LinearLayout>
@@ -68,6 +82,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp">
         <TextView
+			android:id="@+id/comeback_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="注册"
@@ -79,10 +94,11 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="30dp">
          <Button
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="#f98126"
-             android:text="登录"
-             android:textSize="20sp"/>
+			android:id="@+id/login"
+			android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f98126"
+            android:text="登录"
+            android:textSize="20sp"/>
      </LinearLayout>
  </LinearLayout>
