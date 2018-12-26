@@ -1,6 +1,7 @@
 package com.example.sidebar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.sidebar.Beans.ErrorBeans;
 import com.example.sidebar.Beans.LoginDataBeans;
+import com.example.sidebar.Utils.DataUtils;
 import com.example.sidebar.Utils.GsonUtils;
 import com.example.sidebar.Utils.HttpUtils;
 
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.sign_in);
         ButterKnife.bind(this);
         GetRegister();
+        GetStoragePass();
     }
     private void Login(){
         account = loginAccount.getText().toString();
@@ -90,13 +93,24 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+    //注册界面传来的账号与密码
     private void GetRegister(){
         if (getIntent() != null){
             account = getIntent().getStringExtra(RegisterActivity.REGISTER_NAME);
             password= getIntent().getStringExtra(RegisterActivity.REGISTER_PASS);
             loginAccount.setText(account);
             loginPassword.setText(password);
+            //储存密码
+            DataUtils.StoragePass(this,account,password);
         }
+    }
+    //提取密码
+    private void GetStoragePass(){
+        SharedPreferences sharedPreferences = getSharedPreferences(DataUtils.LOGINPASSWORAD,MODE_PRIVATE);
+        String username = sharedPreferences.getString(DataUtils.USERNAME, "");
+        String password = sharedPreferences.getString(DataUtils.PASSWROD, "");
+        loginAccount.setText(username);
+        loginPassword.setText(password);
     }
     @OnClick({R.id.comeback_register, R.id.login})
     public void onViewClicked(View view) {

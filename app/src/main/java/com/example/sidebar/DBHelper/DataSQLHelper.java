@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class DataSQLHelper extends OrmLiteSqliteOpenHelper{
     private static final String dbName="memorandum.db";
-    private static final  int version = 3;
+    private static final  int version = 4;
     private static DataSQLHelper getDatabase;
     public  static synchronized DataSQLHelper getDatabase(Context context){
         if (getDatabase==null){

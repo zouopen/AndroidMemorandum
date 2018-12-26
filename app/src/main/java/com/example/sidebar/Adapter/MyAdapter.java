@@ -52,9 +52,9 @@ public class MyAdapter extends BaseAdapter{
         if(convertView==null){
             convertView = inflater.inflate(R.layout.item,parent,false);
             viewHolder  = new ViewHolder();
-            viewHolder.mText = (TextView)convertView.findViewById(R.id.mtext);
-            viewHolder.mTime = (TextView)convertView.findViewById(R.id.mtime);
-            viewHolder.mImg  = (ImageView)convertView.findViewById(R.id.with);
+            viewHolder.mText = convertView.findViewById(R.id.mtext);
+            viewHolder.mTime = convertView.findViewById(R.id.mtime);
+            viewHolder.mImg  = convertView.findViewById(R.id.with);
             convertView.setTag(viewHolder);
         }else {
             viewHolder= (ViewHolder) convertView.getTag();

@@ -40,41 +40,12 @@ public class GsonUtils {
                 errorBeans.setData(loginDataBeans);
                 return errorBeans;
             }else{
-                errorBeans = LoginBean(response);
+                JSONObject jsonObject1 = new JSONObject(response);
+                int errorCode     = jsonObject1.getInt("errorCode");
+                String  ErrorMsg  = jsonObject1.getString("errorMsg");
+                errorBeans.setErrorCode(errorCode);
+                errorBeans.setErrorMsg(ErrorMsg);
                 return errorBeans;
-            }
-        }
-        return null;
-    }
-
-    /**
-     *
-     * @param response 请求注册返回的response
-     * @return 返回解析过的List
-     * @throws JSONException
-     */
-    private static ErrorBeans LoginBean(String response) throws JSONException {
-        if (response != null){
-            ErrorBeans beans = new ErrorBeans();
-            JSONObject jsonObject1 = new JSONObject(response);
-            int errorCode     = jsonObject1.getInt("errorCode");
-            String  ErrorMsg  = jsonObject1.getString("errorMsg");
-            beans.setErrorCode(errorCode);
-            beans.setErrorMsg(ErrorMsg);
-            return beans;
-        }else {
-            return null;
-        }
-    }
-    public static ErrorBeans errorBeans(String response) throws JSONException{
-        if (response != null){
-            JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
-            int asInt = jsonObject.get("errorCode").getAsInt();
-            Gson gson = new Gson();
-            if (asInt == 1){
-                ErrorBeans errorBeans = gson.fromJson(response,ErrorBeans.class);
-            }else {
-                return LoginBean(response);
             }
         }
         return null;

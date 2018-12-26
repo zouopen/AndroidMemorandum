@@ -38,7 +38,6 @@
                  android:textSize="15dp"
                  android:textColor="#000000"
                  android:singleLine="true"
-
                  android:layout_marginRight="25dp"/>
              <!--android:maxLength="20"   限制输入字数-->
              <EditText
@@ -46,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@null"
+                 android:textColor="#000"
                 android:maxLength="20"
                  />
 
@@ -67,6 +67,7 @@
 
              <!--android:inputType="textPassword"   隐藏输入内容-->
              <EditText
+                 android:textColor="#000"
 				android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

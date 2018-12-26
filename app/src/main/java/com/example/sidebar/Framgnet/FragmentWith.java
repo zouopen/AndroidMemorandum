@@ -1,26 +1,16 @@
 package com.example.sidebar.Framgnet;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.sidebar.DBHelper.NoteDAOService;
-import com.example.sidebar.DBHelper.NoteDAOServiceImpl;
-import com.example.sidebar.Dao.DataDao;
-import com.example.sidebar.MainActivity;
 import com.example.sidebar.R;
-
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

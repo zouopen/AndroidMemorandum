@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingTop="5dp"
+        android:focusableInTouchMode="true"
         android:layout_below="@id/toolbar1"
         android:paddingRight="25dp"
         android:paddingLeft="25dp">

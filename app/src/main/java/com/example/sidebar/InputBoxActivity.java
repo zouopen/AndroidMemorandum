@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.app.hubert.guide.NewbieGuide;
+import com.app.hubert.guide.model.GuidePage;
 import com.example.sidebar.DBHelper.DataWay;
 import com.example.sidebar.DBHelper.NoteDAOService;
 import com.example.sidebar.DBHelper.NoteDAOServiceImpl;
@@ -30,10 +32,7 @@ import butterknife.OnClick;
  */
 
 public class InputBoxActivity extends AppCompatActivity{
-    //@Bind(R.id.et_text) EditText et_text;
-    //@Bind(R.id.fanhui)  ImageButton comeback;
-   // @Bind(R.id.queren)  ImageButton clean;
-
+    @Bind(R.id.show) LinearLayout linearLayout;
     protected FragmentAdd  fragmentAdd  = new FragmentAdd();
     protected FragmentWith fragmentWith = new FragmentWith();
     private   int flag=0;
@@ -44,13 +43,22 @@ public class InputBoxActivity extends AppCompatActivity{
         setContentView(R.layout.inputbox);
         ButterKnife.bind(this);
         FragmentView();
-
+        Boot_layer();
     }
     private void FragmentView(){
         this.getSupportFragmentManager().beginTransaction()
                 .add(R.id.input_box,fragmentWith)       //待办页
                 .add(R.id.input_box,fragmentAdd)       //普通编辑页
                 .commit();
+    }
+    private void Boot_layer(){
+        NewbieGuide.with(InputBoxActivity.this)
+                .setLabel("guide")
+                .alwaysShow(true)
+                .addGuidePage(GuidePage.newInstance()
+                .addHighLight(linearLayout)
+                .setLayoutRes(R.layout.view_show))
+                .show();
     }
     @OnClick(R.id.fanhui) void ComeBackListener(){
 //        判断flag如果为0不是待办，为1就是待办
