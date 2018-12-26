@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sidebar.Beans.ErrorBeans;
-import com.example.sidebar.Beans.LoginDataBeans;
 import com.example.sidebar.Utils.DataUtils;
 import com.example.sidebar.Utils.GsonUtils;
 import com.example.sidebar.Utils.HttpUtils;
@@ -33,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.login_password) EditText loginPassword;
     @Bind(R.id.comeback_register) TextView comebackRegister;
     @Bind(R.id.login) Button login;
+    private DataUtils dataUtils = new DataUtils();
     private String account;
     private String password;
 
@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                                    dataUtils.StoragePass(LoginActivity.this,account,password);
                                 }
                             })
                             .show();
@@ -101,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             loginAccount.setText(account);
             loginPassword.setText(password);
             //储存密码
-            DataUtils.StoragePass(this,account,password);
+            dataUtils.StoragePass(LoginActivity.this,account,password);
         }
     }
     //提取密码
@@ -116,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.comeback_register:
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
                 break;
             case R.id.login:
                 Login();

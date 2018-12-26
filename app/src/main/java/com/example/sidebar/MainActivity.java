@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,RegisterActivity.class));
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
             }
         });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         //新增多页模式，即一个引导层显示多页引导内容
         NewbieGuide.with(this)
                 .setLabel("page")//设置引导层标示区分不同引导层，必传！否则报错
-                .alwaysShow(true)//是否每次都显示引导层，默认false，只显示一次
+                .alwaysShow(false)//是否每次都显示引导层，默认false，只显示一次
                 .addGuidePage(//添加一页引导页
                         GuidePage.newInstance()//创建一个实例
                                 .setLayoutRes(R.layout.view_guide_simple)//设置引导页布局

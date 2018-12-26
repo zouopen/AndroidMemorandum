@@ -8,7 +8,7 @@ public class DataUtils {
     public static final String USERNAME       = "USERNAME";
     public static final String PASSWROD       = "PASSWORD";
     //保存数据
-    public static void StoragePass(Context context,String user,String password){
+    public void StoragePass(Context context,String user,String password){
         SharedPreferences sharedPreferences = context.getSharedPreferences(LOGINPASSWORAD,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USERNAME,user);
