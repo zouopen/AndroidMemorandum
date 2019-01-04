@@ -1,5 +1,6 @@
 package com.example.sidebar;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sidebar.Beans.ErrorBeans;
+import com.example.sidebar.Biz.AsynchronousLogin;
 import com.example.sidebar.Utils.DataUtils;
 import com.example.sidebar.Utils.GsonUtils;
 import com.example.sidebar.Utils.HttpUtils;
@@ -18,6 +20,7 @@ import com.example.sidebar.Utils.HttpUtils;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private DataUtils dataUtils = new DataUtils();
     private String account;
     private String password;
+    private AsynchronousLogin asynchronousLogin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,51 +51,27 @@ public class LoginActivity extends AppCompatActivity {
     private void Login(){
         account = loginAccount.getText().toString();
         password = loginPassword.getText().toString();
-        HttpUtils.Login_enqueue(account, password, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    ErrorBeans errorBeans =  GsonUtils.ErrorBeans(response.body().string());
-                    CheckLogin(errorBeans);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        asynchronousLogin = new AsynchronousLogin(account,password);
+        AsynchronousLogin();
     }
     private void CheckLogin(final ErrorBeans errorBeans){
         if (errorBeans.getErrorCode() == 0){
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("登录成功")
-                            .setContentText("您好"+errorBeans.getData().getUsername())
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                                    dataUtils.StoragePass(LoginActivity.this,account,password);
-                                }
-                            })
-                            .show();
-                }
-            });
+            new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("登录成功")
+                    .setContentText("您好"+errorBeans.getData().getUsername())
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            dataUtils.StoragePass(LoginActivity.this,account,password);
+                        }
+                    })
+                    .show();
         }else{
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("错误")
-                            .setContentText(errorBeans.getErrorMsg())
-                            .show();
-                }
-            });
+            new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("错误")
+                    .setContentText(errorBeans.getErrorMsg())
+                    .show();
         }
     }
     //注册界面传来的账号与密码
@@ -112,6 +92,22 @@ public class LoginActivity extends AppCompatActivity {
         String password = sharedPreferences.getString(DataUtils.PASSWROD, "");
         loginAccount.setText(username);
         loginPassword.setText(password);
+    }
+    private void AsynchronousLogin(){
+        asynchronousLogin.AsyncTaskLoginData(this, new AsynchronousLogin.CallBackData() {
+            @Override
+            public void OnSuccess(ErrorBeans errorBeans) {
+                CheckLogin(errorBeans);
+            }
+
+            @Override
+            public void OnFail(Exception ex) {
+                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("")
+                        .setContentText("请检查网络")
+                        .show();
+            }
+        });
     }
     @OnClick({R.id.comeback_register, R.id.login})
     public void onViewClicked(View view) {

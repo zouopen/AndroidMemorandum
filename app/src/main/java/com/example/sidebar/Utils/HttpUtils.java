@@ -69,4 +69,23 @@ public class HttpUtils {
                 .build();
         httpClient.newCall(request).enqueue(callback);
     }
+    public static String Login_execute(Context context,String username,String password) throws IOException {
+        OkHttpClient httpClient = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder()
+                .add("username",username)
+                .add("password",password)
+                .build();
+        Request request = new Request.Builder()
+                .url(Login_Url)
+                .post(body)
+                .build();
+        Response response = httpClient.newCall(request).execute();
+        if (response.isSuccessful()){
+            return response.body().string();
+        }else {
+            Toast.makeText(context,"网络异常哦",Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
 }
